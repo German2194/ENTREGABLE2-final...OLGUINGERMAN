@@ -1,6 +1,4 @@
-/* styles.css - Estilos del Simulador de Ciberseguridad */
-
-* {
+/* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -256,4 +254,472 @@ body {
     padding: 10px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 5px;
-    background: rgba(255, 255, 255,
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(45deg, #00d4ff, #0099cc);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    text-align: center;
+    color: #cccccc;
+}
+
+.scan-results {
+    margin-top: 20px;
+}
+
+.vulnerability-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-left: 4px solid;
+}
+
+.vulnerability-item.critical {
+    background: rgba(255, 0, 0, 0.1);
+    border-left-color: #ff0000;
+}
+
+.vulnerability-item.high {
+    background: rgba(255, 165, 0, 0.1);
+    border-left-color: #ffa500;
+}
+
+.vulnerability-item.medium {
+    background: rgba(255, 255, 0, 0.1);
+    border-left-color: #ffff00;
+}
+
+.vulnerability-item.low {
+    background: rgba(0, 255, 136, 0.1);
+    border-left-color: #00ff88;
+}
+
+/* Firewall Styles */
+.firewall-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.firewall-status {
+    margin-bottom: 30px;
+}
+
+.status-toggle {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #00d4ff;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.rule-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.rule-form input,
+.rule-form select {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+.rules-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.rule-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+}
+
+.rule-item.allow {
+    border-left: 4px solid #00ff88;
+}
+
+.rule-item.block {
+    border-left: 4px solid #ff0000;
+}
+
+/* Logs Styles */
+.logs-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.logs-controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.logs-controls select {
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+.logs-display {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 15px;
+    height: 400px;
+    overflow-y: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.log-entry {
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.log-entry:last-child {
+    border-bottom: none;
+}
+
+.log-entry.error {
+    color: #ff6b6b;
+}
+
+.log-entry.warning {
+    color: #ffa500;
+}
+
+.log-entry.info {
+    color: #00d4ff;
+}
+
+/* Training Styles */
+.training-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.question-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.question-card h4 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.answers {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.answer-option {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.answer-option:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.answer-option.selected {
+    border-color: #00d4ff;
+    background: rgba(0, 212, 255, 0.1);
+}
+
+.answer-option.correct {
+    border-color: #00ff88;
+    background: rgba(0, 255, 136, 0.1);
+}
+
+.answer-option.incorrect {
+    border-color: #ff0000;
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.quiz-results {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.score {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Button Styles */
+.btn-primary,
+.btn-secondary {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #00d4ff, #0099cc);
+    color: #000;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+}
+
+.btn-primary:disabled {
+    background: #666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-danger {
+    background: #ff4757;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background: #ff3742;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    margin: 15% auto;
+    padding: 0;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header i {
+    color: #ffa500;
+    font-size: 1.5rem;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-footer {
+    padding: 20px;
+    text-align: right;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+.close:hover {
+    color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .nav-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .metrics {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .scan-controls {
+        grid-template-columns: 1fr;
+    }
+    
+    .network-status {
+        flex-direction: column;
+    }
+    
+    .rule-form {
+        flex-direction: column;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tab-content.active {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.status-indicator {
+    animation: pulse 2s infinite;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 212, 255, 0.5);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 212, 255, 0.8);
+}
