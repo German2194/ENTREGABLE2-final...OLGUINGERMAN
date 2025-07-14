@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSec Simulator - Sistema de Seguridad</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>CyberSec Simulator</h1>
+            </div>
+            <div class="security-status">
+                <span class="status-indicator" id="securityStatus">SEGURO</span>
+                <div class="threat-level">
+                    <span>Nivel de Amenaza: </span>
+                    <span id="threatLevel">BAJO</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+            <button class="tab-btn" data-tab="scanner">Escáner</button>
+            <button class="tab-btn" data-tab="firewall">Firewall</button>
+            <button class="tab-btn" data-tab="logs">Logs</button>
+            <button class="tab-btn" data-tab="training">Entrenamiento</button>
+        </nav>
+
+        <!-- Dashboard Tab -->
+        <div class="tab-content active" id="dashboard">
+            <div class="dashboard-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Métricas de Seguridad</h3>
+                    </div>
+                    <div class="metrics">
+                        <div class="metric">
+                            <span class="metric-label">Ataques Bloqueados</span>
+                            <span class="metric-value" id="blockedAttacks">0</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Vulnerabilidades</span>
+                            <span class="metric-value" id="vulnerabilities">0</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Sistemas Monitoreados</span>
+                            <span class="metric-value" id="systemsMonitored">15</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Alertas Recientes</h3>
+                    </div>
+                    <div class="alerts-container" id="recentAlerts">
+                        <!-- Alerts will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>Estado de la Red</h3>
+                    </div>
+                    <div class="network-status">
+                        <div class="network-node" data-status="secure">
+                            <i class="fas fa-server"></i>
+                            <span>Servidor Principal</span>
+                        </div>
+                        <div class="network-node" data-status="warning">
+                            <i class="fas fa-database"></i>
+                            <span>Base de Datos</span>
+                        </div>
+                        <div class="network-node" data-status="secure">
+                            <i class="fas fa-wifi"></i>
+                            <span>Red WiFi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scanner Tab -->
+        <div class="tab-content" id="scanner">
+            <div class="scanner-container">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-search"></i>
+                        <h3>Escáner de Vulnerabilidades</h3>
+                    </div>
+                    <div class="scan-controls">
+                        <div class="input-group">
+                            <label for="scanTarget">Objetivo del Escaneo:</label>
+                            <input type="text" id="scanTarget" placeholder="192.168.1.100" value="192.168.1.100">
+                        </div>
+                        <div class="input-group">
+                            <label for="scanType">Tipo de Escaneo:</label>
+                            <select id="scanType">
+                                <option value="basic">Básico</option>
+                                <option value="advanced">Avanzado</option>
+                                <option value="full">Completo</option>
+                            </select>
+                        </div>
+                        <button class="btn-primary" id="startScan">Iniciar Escaneo</button>
+                    </div>
+                    <div class="scan-progress" id="scanProgress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="progress-text" id="progressText">Iniciando escaneo...</div>
+                    </div>
+                    <div class="scan-results" id="scanResults"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Firewall Tab -->
+        <div class="tab-content" id="firewall">
+            <div class="firewall-container">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Configuración del Firewall</h3>
+                    </div>
+                    <div class="firewall-status">
+                        <div class="status-toggle">
+                            <span>Estado del Firewall:</span>
+                            <label class="switch">
+                                <input type="checkbox" id="firewallToggle" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="firewall-rules">
+                        <h4>Reglas del Firewall</h4>
+                        <div class="rule-form">
+                            <input type="text" id="ruleIP" placeholder="Dirección IP">
+                            <select id="ruleAction">
+                                <option value="allow">Permitir</option>
+                                <option value="block">Bloquear</option>
+                            </select>
+                            <button class="btn-secondary" id="addRule">Agregar Regla</button>
+                        </div>
+                        <div class="rules-list" id="rulesList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logs Tab -->
+        <div class="tab-content" id="logs">
+            <div class="logs-container">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Registros de Seguridad</h3>
+                    </div>
+                    <div class="logs-controls">
+                        <select id="logFilter">
+                            <option value="all">Todos los Logs</option>
+                            <option value="error">Errores</option>
+                            <option value="warning">Advertencias</option>
+                            <option value="info">Información</option>
+                        </select>
+                        <button class="btn-secondary" id="clearLogs">Limpiar Logs</button>
+                    </div>
+                    <div class="logs-display" id="logsDisplay"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Training Tab -->
+        <div class="tab-content" id="training">
+            <div class="training-container">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Entrenamiento en Ciberseguridad</h3>
+                    </div>
+                    <div class="quiz-container">
+                        <div class="question-card" id="questionCard">
+                            <h4 id="questionText">Cargando pregunta...</h4>
+                            <div class="answers" id="answersContainer"></div>
+                            <button class="btn-primary" id="submitAnswer" disabled>Responder</button>
+                        </div>
+                        <div class="quiz-results" id="quizResults">
+                            <div class="score">Puntuación: <span id="score">0</span>/<span id="totalQuestions">0</span></div>
+                            <button class="btn-secondary" id="nextQuestion">Siguiente Pregunta</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for notifications -->
+    <div class="modal" id="notificationModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3 id="modalTitle">Alerta de Seguridad</h3>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="modalConfirm">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
