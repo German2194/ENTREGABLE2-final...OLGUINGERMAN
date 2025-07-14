@@ -1,0 +1,405 @@
+/* css/style.css */
+
+/* Variables CSS para facilitar la gestión de colores y fuentes */
+:root {
+    --primary-color: #007bff; /* Azul vibrante */
+    --secondary-color: #6c757d; /* Gris para botones secundarios */
+    --accent-color: #28a745; /* Verde para éxito/agregar */
+    --danger-color: #dc3545; /* Rojo para eliminar */
+    --background-light: #f8f9fa;
+    --text-color-dark: #343a40;
+    --card-background: #ffffff;
+    --border-color: #dee2e6;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --header-height: 60px;
+}
+
+/* Reset básico y box-sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    color: var(--text-color-dark);
+    background-color: var(--background-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Encabezado */
+.header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px var(--shadow);
+    height: var(--header-height);
+}
+
+.header__title {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+}
+
+.header__cart-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.header__cart-button:hover {
+    background-color: #218838; /* Tono más oscuro de verde */
+}
+
+/* Contenido Principal */
+.main-content {
+    flex-grow: 1; /* Permite que el contenido principal ocupe el espacio restante */
+    padding: 2rem;
+    max-width: 1200px; /* Ancho máximo para el contenido */
+    margin: 0 auto; /* Centrar el contenido */
+    width: 100%;
+}
+
+/* Grid de Productos */
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+    gap: 2rem; /* Espacio entre tarjetas */
+}
+
+.producto-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow);
+    padding: 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.producto-card__imagen {
+    max-width: 100%;
+    height: 180px; /* Altura fija para las imágenes */
+    object-fit: contain; /* Para que la imagen se ajuste sin recortarse */
+    margin-bottom: 1rem;
+    border-radius: 4px;
+}
+
+.producto-card__nombre {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.producto-card__descripcion {
+    font-size: 0.9rem;
+    color: var(--text-color-dark);
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Permite que la descripción empuje el precio y el botón hacia abajo */
+}
+
+.producto-card__precio {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+/* Botones genéricos */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn--primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn--primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.btn--secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn--secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+.btn--add-to-cart {
+    background-color: var(--accent-color);
+    color: white;
+    width: 100%; /* El botón ocupa todo el ancho de la tarjeta */
+}
+
+.btn--add-to-cart:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.btn--danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn--danger:hover {
+    background-color: #c82333;
+}
+
+.btn--small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    min-width: 30px; /* Asegura un ancho mínimo para los botones +/- */
+}
+
+
+/* Modal del Carrito */
+.carrito-modal {
+    position: fixed; /* Posición fija para cubrir toda la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    opacity: 1; /* Por defecto visible, JS lo oculta con 'hidden' */
+    transition: opacity 0.3s ease;
+}
+
+.carrito-modal.hidden {
+    opacity: 0;
+    visibility: hidden; /* Oculta completamente para no ser interactuable */
+}
+
+.carrito-modal__content {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px var(--shadow);
+    max-width: 600px; /* Ancho máximo del modal */
+    width: 90%; /* Ancho responsivo */
+    max-height: 80vh; /* Altura máxima para permitir scroll */
+    overflow-y: auto; /* Scroll si el contenido es demasiado largo */
+    position: relative;
+    transform: translateY(0);
+    transition: transform 0.3s ease-out;
+}
+
+/* Animación para el modal al abrir/cerrar */
+.carrito-modal.hidden .carrito-modal__content {
+    transform: translateY(-20px);
+}
+
+.carrito-modal__title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.carrito-modal__items {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.carrito-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.carrito-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.carrito-item__imagen {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.carrito-item__info {
+    flex-grow: 1;
+}
+
+.carrito-item__nombre {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+}
+
+.carrito-item__precio {
+    font-size: 1rem;
+    color: var(--secondary-color);
+}
+
+.carrito-item__cantidad-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.carrito-item__cantidad {
+    font-weight: bold;
+    font-size: 1.1rem;
+    min-width: 25px;
+    text-align: center;
+}
+
+/* Pie de página del carrito */
+.carrito-modal__footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    gap: 1rem;
+}
+
+.carrito-modal__total {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.carrito-vacio {
+    text-align: center;
+    color: var(--secondary-color);
+    font-style: italic;
+    padding: 2rem 0;
+}
+
+/* Pie de página general */
+.footer {
+    background-color: var(--text-color-dark);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    margin-top: auto; /* Empuja el footer al final de la página */
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        gap: 0.5rem;
+    }
+
+    .header__title {
+        font-size: 1.5rem;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .productos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .producto-card {
+        padding: 1rem;
+    }
+
+    .producto-card__imagen {
+        height: 150px;
+    }
+
+    .carrito-modal__content {
+        padding: 1.5rem;
+        width: 95%;
+    }
+
+    .carrito-item {
+        flex-wrap: wrap; /* Permite que los elementos del ítem del carrito se envuelvan */
+        justify-content: center;
+        text-align: center;
+    }
+
+    .carrito-item__imagen {
+        margin: 0 auto; /* Centrar la imagen en el modo wrap */
+    }
+
+    .carrito-item__info {
+        text-align: center;
+    }
+
+    .carrito-modal__footer {
+        flex-direction: column;
+    }
+
+    .carrito-modal__total {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    .header__cart-button {
+        padding: 0.6rem 1rem;
+    }
+}
+
+/* Clases de utilidad */
+.hidden {
+    display: none !important;
+}

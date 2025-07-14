@@ -1,0 +1,32 @@
+// js/data.json
+[
+  {
+    "id": 1,
+    "nombre": "Teclado Mecánico RGB",
+    "precio": 75.99,
+    "imagen": "assets/images/teclado.jpg",
+    "descripcion": "Teclado gamer con switches personalizables y retroiluminación RGB."
+  },
+  {
+    "id": 2,
+    "nombre": "Mouse Inalámbrico Ergonómico",
+    "precio": 35.50,
+    "imagen": "assets/images/mouse.jpg",
+    "descripcion": "Mouse de alta precisión con diseño ergonómico para largas sesiones de uso."
+  },
+  {
+    "id": 3,
+    "nombre": "Monitor Curvo 27 pulgadas",
+    "precio": 299.00,
+    "imagen": "assets/images/monitor.jpg",
+    "descripcion": "Experiencia inmersiva con resolución Full HD y alta tasa de refresco."
+  },
+  {
+    "id": 4,
+    "nombre": "Auriculares Gaming Surround",
+    "precio": 59.75,
+    "imagen": "assets/images/auriculares.jpg",
+    "descripcion": "Sonido envolvente 7.1 y micrófono retráctil para una comunicación clara."
+  }
+  // ¡Puedes agregar más productos aquí siguiendo el mismo formato!
+]

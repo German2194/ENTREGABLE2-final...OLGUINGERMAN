@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce TechGadgets</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__title">TechGadgets Store</h1>
+        <nav class="header__nav">
+            <button id="ver-carrito-btn" class="header__cart-button">
+                Ver Carrito (<span id="cantidad-carrito">0</span>)
+            </button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section id="productos-container" class="productos-grid">
+            </section>
+
+        <section id="carrito-container" class="carrito-modal hidden">
+            <div class="carrito-modal__content">
+                <h2 class="carrito-modal__title">Tu Carrito de Compras</h2>
+                <div id="items-carrito" class="carrito-modal__items">
+                    </div>
+                <div class="carrito-modal__footer">
+                    <p class="carrito-modal__total">Total: $<span id="total-carrito">0.00</span></p>
+                    <button id="finalizar-compra-btn" class="btn btn--primary">Finalizar Compra</button>
+                    <button id="cerrar-carrito-btn" class="btn btn--secondary">Cerrar</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 TechGadgets. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="js/ui.js" defer></script>
+    <script src="js/cart.js" defer></script>
+    <script src="js/main.js" defer></script>
+</body>
+</html>
